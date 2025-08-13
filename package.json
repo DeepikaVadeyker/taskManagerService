@@ -11,10 +11,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.864.0",
+    "@aws-sdk/lib-dynamodb": "^3.864.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^5.1.0",
-    "mongoose": "^8.17.1"
+    "mongoose": "^8.17.1",
+    "serverless-http": "^3.2.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
