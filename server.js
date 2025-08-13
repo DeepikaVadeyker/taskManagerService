@@ -6,6 +6,10 @@ const tasksRouter = require('./routes/tasksDynamoDB');
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use((req, res, next) => {
+  console.log('PATH:', req.path);
+  next();
+});
 app.use('/api/tasks', tasksRouter);
 app.get('/', (req, res) => res.send('Task Manager API running'));
 
