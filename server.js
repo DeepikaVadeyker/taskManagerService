@@ -2,6 +2,8 @@ const express = require('express');
 require('dotenv').config();
 const cors = require('cors');
 const tasksRouter = require('./routes/tasksDynamoDB');
+const serverless = require('serverless-http'); // <---
+
 
 const app = express();
 app.use(cors());
@@ -18,8 +20,9 @@ if (process.env.IS_LOCAL) {
   const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => console.log(`Server listening on ${PORT}`));
 }
+module.exports.handler = serverless(app);
 
-module.exports = app; // export app for Lambda
+// module.exports = app; // export app for Lambda
 
 
 
