@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - echo Installing dependencies...
+      - npm install
+  build:
+    commands:
+      - echo Build step - add if needed, e.g. tests, transpile
+  post_build:
+    commands:
+      - echo Packaging lambda function...
+      - zip -r function.zip .
+      - echo Deploying to Lambda...
+      - aws lambda update-function-code --function-name LamdaFunction --zip-file fileb://function.zip --region us-east-2
+
+artifacts:
+  files:
+    - function.zip
