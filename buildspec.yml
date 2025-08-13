@@ -9,7 +9,7 @@ phases:
       - npm install
   build:
     commands:
-      - echo Build step (add if needed, e.g. tests, transpile)
+      - echo Build step - add if needed, e.g. tests, transpile
   post_build:
     commands:
       - echo Packaging lambda function...
