@@ -1,6 +1,6 @@
 const { DynamoDBClient } = require('@aws-sdk/client-dynamodb');
 const { DynamoDBDocumentClient, ScanCommand, GetCommand, PutCommand, UpdateCommand, DeleteCommand } = require('@aws-sdk/lib-dynamodb');
-
+const { v4: uuidv4 } = require('uuid');
 const client = new DynamoDBClient({ region: 'us-east-1' }); // change region if needed
 const docClient = DynamoDBDocumentClient.from(client);
 
@@ -8,12 +8,17 @@ const TABLE_NAME = 'Tasks';
 
 // Get all tasks (optionally filter by status)
 async function getTasks(status) {
-  let params = { TableName: TABLE_NAME };
-  const data = await docClient.send(new ScanCommand(params));
-
-  if (status === 'active') return data.Items.filter(task => !task.completed);
-  if (status === 'completed') return data.Items.filter(task => task.completed);
-  return data.Items;
+    try {
+        let params = { TableName: TABLE_NAME };
+        const data = await docClient.send(new ScanCommand(params));
+        console.log('DynamoDB Scan result:', data.Items.length, 'items');
+        if (status === 'active') return data.Items.filter(task => !task.completed);
+        if (status === 'completed') return data.Items.filter(task => task.completed);
+        return data.Items;
+    } catch (err) {
+        console.error('Error in getTasks:', err);
+        throw err;
+    }
 }
 
 // Create a task
@@ -36,12 +41,15 @@ async function updateTask(id, updates) {
   let updateExpression = 'set';
   let ExpressionAttributeNames = {};
   let ExpressionAttributeValues = {};
-
+if (Object.keys(updates).length === 0) {
+    throw new Error('No updates provided');
+} else {
   Object.keys(updates).forEach((key, index) => {
     updateExpression += ` #${key} = :${key},`;
     ExpressionAttributeNames['#' + key] = key;
     ExpressionAttributeValues[':' + key] = updates[key];
   });
+}
   updateExpression = updateExpression.slice(0, -1);
 
   const params = {

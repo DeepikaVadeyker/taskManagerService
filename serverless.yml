@@ -5,9 +5,10 @@ provider:
   runtime: nodejs18.x
   region: us-east-2
   environment:
-    TABLE_NAME: TaskTable   # DynamoDB table name
+    TABLE_NAME: Tasks   # DynamoDB table name
     BEDROCK_REGION: us-east-2
-
+  deploymentBucket:
+    name: my-sls-task-bucket
   iamRoleStatements:
     - Effect: "Allow"
       Action:

@@ -104,8 +104,8 @@
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
-          "S3Bucket": "serverless-framework-deployments-us-east-2-8c91dde6-dfcb",
-          "S3Key": "serverless/task-manager-app/dev/1755980351547-2025-08-23T20:19:11.547Z/task-manager-app.zip"
+          "S3Bucket": "my-sls-task-bucket",
+          "S3Key": "serverless/task-manager-app/dev/1755989621995-2025-08-23T22:53:41.995Z/task-manager-app.zip"
         },
         "Handler": "server.handler",
         "Runtime": "nodejs18.x",
@@ -114,7 +114,7 @@
         "Timeout": 6,
         "Environment": {
           "Variables": {
-            "TABLE_NAME": "TaskTable",
+            "TABLE_NAME": "Tasks",
             "BEDROCK_REGION": "us-east-2"
           }
         },
@@ -129,14 +129,14 @@
         "AppLogGroup"
       ]
     },
-    "AppLambdaVersionTpNpsGRF8TUNpoTMZV4xIXcbVyujzJeoVSK4NqVno": {
+    "AppLambdaVersiondbaLGVYualrBKShPrgYnywgYM2bGu5aCxzc1JLXZbw": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AppLambdaFunction"
         },
-        "CodeSha256": "RsOEROAWfMwJc4Drq40+WqpZAV2GHBa6kHtCTZ3IKRc="
+        "CodeSha256": "Nb15jIQReKtL6efSe+kShmTCIP0qWE79hgIkKiRz+V8="
       }
     },
     "ApiGatewayRestApi": {
@@ -475,7 +475,7 @@
         "AppLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1755980342606": {
+    "ApiGatewayDeployment1755989615745": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -532,7 +532,7 @@
   },
   "Outputs": {
     "ServerlessDeploymentBucketName": {
-      "Value": "serverless-framework-deployments-us-east-2-8c91dde6-dfcb",
+      "Value": "my-sls-task-bucket",
       "Export": {
         "Name": "sls-task-manager-app-dev-ServerlessDeploymentBucketName"
       }
@@ -540,7 +540,7 @@
     "AppLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AppLambdaVersionTpNpsGRF8TUNpoTMZV4xIXcbVyujzJeoVSK4NqVno"
+        "Ref": "AppLambdaVersiondbaLGVYualrBKShPrgYnywgYM2bGu5aCxzc1JLXZbw"
       },
       "Export": {
         "Name": "sls-task-manager-app-dev-AppLambdaFunctionQualifiedArn"

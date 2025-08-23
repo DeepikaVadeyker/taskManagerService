@@ -25,7 +25,10 @@ if (process.env.IS_LOCAL) {
   const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => console.log(`Server listening on ${PORT}`));
 }
-module.exports.handler = serverless(app);
+module.exports.handler = async (event, context) => {
+    context.callbackWaitsForEmptyEventLoop = false;
+    return serverless(app)(event, context);
+};
 
 // module.exports = app; // export app for Lambda
 
