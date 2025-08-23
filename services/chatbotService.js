@@ -9,7 +9,7 @@ const client = new BedrockRuntimeClient({
 
 async function askBot(userMessage) {
   const command = new InvokeModelCommand({
-    modelId: "anthropic.claude-v2", // or the model you enabled
+    modelId: "anthropic.claude-opus-4-1-20250805-v1:0", // or the model you enabled
     contentType: "application/json",
     accept: "application/json",
     body: JSON.stringify({

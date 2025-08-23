@@ -105,7 +105,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-us-east-2-8c91dde6-dfcb",
-          "S3Key": "serverless/task-manager-app/dev/1755971910546-2025-08-23T17:58:30.546Z/task-manager-app.zip"
+          "S3Key": "serverless/task-manager-app/dev/1755980351547-2025-08-23T20:19:11.547Z/task-manager-app.zip"
         },
         "Handler": "server.handler",
         "Runtime": "nodejs18.x",
@@ -129,14 +129,14 @@
         "AppLogGroup"
       ]
     },
-    "AppLambdaVersionrhuvMNkvDeAczUDl5PPNS3SbfQBEVibLVKn3uHqf9M": {
+    "AppLambdaVersionTpNpsGRF8TUNpoTMZV4xIXcbVyujzJeoVSK4NqVno": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AppLambdaFunction"
         },
-        "CodeSha256": "TjMLFyMp5R+Z+uoTk5ukkakmGutA5Ob/6fnqeSpXo08="
+        "CodeSha256": "RsOEROAWfMwJc4Drq40+WqpZAV2GHBa6kHtCTZ3IKRc="
       }
     },
     "ApiGatewayRestApi": {
@@ -475,7 +475,7 @@
         "AppLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1755971902730": {
+    "ApiGatewayDeployment1755980342606": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -540,7 +540,7 @@
     "AppLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AppLambdaVersionrhuvMNkvDeAczUDl5PPNS3SbfQBEVibLVKn3uHqf9M"
+        "Ref": "AppLambdaVersionTpNpsGRF8TUNpoTMZV4xIXcbVyujzJeoVSK4NqVno"
       },
       "Export": {
         "Name": "sls-task-manager-app-dev-AppLambdaFunctionQualifiedArn"
