@@ -15,7 +15,7 @@ phases:
       - echo Packaging lambda function...
       - zip -r function.zip .
       - echo Deploying to Lambda...
-      - aws lambda update-function-code --function-name LamdaFunction --zip-file fileb://function.zip --region us-east-2
+      - aws lambda update-function-code --function-name task-manager-app-dev-app --zip-file fileb://function.zip --region us-east-2
 
 artifacts:
   files:
