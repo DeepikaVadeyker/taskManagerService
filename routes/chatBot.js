@@ -11,7 +11,7 @@ router.post("/", async (req, res) => {
     res.json({ reply: aiResponse });
   } catch (err) {
     console.error("Chatbot error:", err);
-    res.status(500).json({ error: err.message});
+    res.status(500).json({ error: err.message, reply: err.message+" Sorry, something went wrong." });
   }
 });
 
