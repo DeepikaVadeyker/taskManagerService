@@ -1,0 +1,36 @@
+service: task-manager-app
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-2
+  environment:
+    TABLE_NAME: TaskTable   # DynamoDB table name
+    BEDROCK_REGION: us-east-2
+
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - dynamodb:*
+      Resource: "*"
+    - Effect: "Allow"
+      Action:
+        - bedrock:InvokeModel
+      Resource: "*"
+
+functions:
+  app:
+    handler: server.handler
+    events:
+      - http:
+          path: api/tasks
+          method: ANY
+          cors: true
+      - http:
+          path: api/tasks/{proxy+}
+          method: ANY
+          cors: true
+      - http:
+          path: api/chat
+          method: post
+          cors: true

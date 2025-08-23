@@ -2,17 +2,22 @@ const express = require('express');
 require('dotenv').config();
 const cors = require('cors');
 const tasksRouter = require('./routes/tasksDynamoDB');
-const serverless = require('serverless-http'); // <---
-
+const serverless = require('serverless-http'); 
+const chatRouter = require('./routes/chatBot');   
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use((req, res, next) => {
-  console.log('PATH:', req.path);
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log('PATH:', req.path);
+//   next();
+// });
+// routes
 app.use('/api/tasks', tasksRouter);
+// new route for chatbot
+app.use('/api/chat', chatRouter); 
+
+// health check route
 app.get('/', (req, res) => res.send('Task Manager API running'));
 
 // Only listen locally
